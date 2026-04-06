@@ -1,0 +1,1080 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kyle Marambio — Exercise & Sport Science</title>
+  <style>
+    /* ── Reset & Base ────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:   #0d1b3e;
+      --navy2:  #122050;
+      --white:  #ffffff;
+      --off:    #f5f5f3;
+      --orange: #e8612c;
+      --gray:   #888;
+      --mid:    #444;
+      --font:   'Inter', 'Helvetica Neue', Arial, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font);
+      background: var(--white);
+      color: var(--navy);
+      overflow-x: hidden;
+    }
+
+    a { text-decoration: none; color: inherit; }
+
+    /* ── Google Font ─────────────────────────────────────────────── */
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+    /* ── NAV ─────────────────────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 48px;
+      height: 68px;
+      background: var(--white);
+      border-bottom: 1px solid rgba(0,0,0,0.07);
+    }
+
+    .nav-logo {
+      font-weight: 800;
+      font-size: 1rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--navy);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--navy);
+      transition: opacity 0.2s;
+    }
+
+    .nav-links a:hover { opacity: 0.5; }
+
+    /* ── HERO ────────────────────────────────────────────────────── */
+    #hero {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 100vh;
+      padding-top: 68px;
+      background: var(--navy);
+    }
+
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 80px 64px 80px 80px;
+    }
+
+    .hero-tag {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 20px;
+    }
+
+    .hero-name {
+      font-size: clamp(3.5rem, 6vw, 6rem);
+      font-weight: 900;
+      line-height: 1;
+      letter-spacing: -0.02em;
+      color: var(--white);
+      margin-bottom: 24px;
+    }
+
+    .hero-sub {
+      font-size: 1.05rem;
+      font-weight: 400;
+      line-height: 1.6;
+      color: rgba(255,255,255,0.65);
+      max-width: 420px;
+      margin-bottom: 44px;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      padding: 14px 32px;
+      background: var(--orange);
+      color: var(--white);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border-radius: 2px;
+      transition: opacity 0.2s;
+    }
+
+    .btn-primary:hover { opacity: 0.85; }
+
+    .btn-outline {
+      display: inline-block;
+      padding: 13px 32px;
+      border: 1.5px solid rgba(255,255,255,0.4);
+      color: var(--white);
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border-radius: 2px;
+      transition: border-color 0.2s, opacity 0.2s;
+    }
+
+    .btn-outline:hover { border-color: var(--white); }
+
+    .hero-right {
+      position: relative;
+      overflow: hidden;
+      background: var(--navy2);
+    }
+
+    .hero-right img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.85;
+    }
+
+    /* placeholder gradient when no photo */
+    .hero-photo-placeholder {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #122050 0%, #1a3a7a 50%, #0d1b3e 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-photo-placeholder svg {
+      width: 220px;
+      height: 220px;
+      opacity: 0.15;
+    }
+
+    /* ── TICKER STRIP ────────────────────────────────────────────── */
+    .ticker-wrap {
+      background: var(--navy);
+      border-top: 1px solid rgba(255,255,255,0.08);
+      overflow: hidden;
+      padding: 14px 0;
+      white-space: nowrap;
+    }
+
+    .ticker-track {
+      display: inline-flex;
+      animation: ticker 28s linear infinite;
+    }
+
+    .ticker-track span {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.55);
+      padding: 0 32px;
+    }
+
+    .ticker-track span.dot {
+      color: var(--orange);
+      padding: 0;
+      font-size: 0.55rem;
+    }
+
+    @keyframes ticker {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* ── SECTIONS SHARED ─────────────────────────────────────────── */
+    section {
+      padding: 120px 80px;
+    }
+
+    .section-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 10px;
+    }
+
+    .section-num {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-bottom: 6px;
+    }
+
+    .section-heading {
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 800;
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+      color: var(--navy);
+      margin-bottom: 24px;
+    }
+
+    .section-heading.white { color: var(--white); }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .divider {
+      height: 1px;
+      background: rgba(0,0,0,0.08);
+      margin: 0 80px;
+    }
+
+    /* ── 01 ABOUT ────────────────────────────────────────────────── */
+    #about {
+      background: var(--white);
+    }
+
+    .about-body p {
+      font-size: 1.02rem;
+      line-height: 1.75;
+      color: var(--mid);
+      margin-bottom: 20px;
+    }
+
+    .contact-chips {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 32px;
+    }
+
+    .chip {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.9rem;
+      color: var(--navy);
+    }
+
+    .chip svg {
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+      color: var(--orange);
+    }
+
+    .about-right {
+      padding-top: 8px;
+    }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      margin-bottom: 40px;
+    }
+
+    .stat-item .stat-num {
+      font-size: 2.8rem;
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      color: var(--navy);
+      line-height: 1;
+    }
+
+    .stat-item .stat-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-top: 4px;
+    }
+
+    .linkedin-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 28px;
+      background: var(--navy);
+      color: var(--white);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border-radius: 2px;
+      transition: opacity 0.2s;
+    }
+
+    .linkedin-btn:hover { opacity: 0.8; }
+
+    /* ── 02 EDUCATION ────────────────────────────────────────────── */
+    #education {
+      background: var(--off);
+    }
+
+    .edu-heading { color: var(--navy); }
+
+    .timeline {
+      position: relative;
+      padding-left: 28px;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 6px;
+      top: 8px;
+      bottom: 0;
+      width: 1.5px;
+      background: rgba(13,27,62,0.15);
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 48px;
+    }
+
+    .timeline-item:last-child { margin-bottom: 0; }
+
+    .timeline-dot {
+      position: absolute;
+      left: -28px;
+      top: 6px;
+      width: 13px;
+      height: 13px;
+      border-radius: 50%;
+      background: var(--orange);
+      border: 2px solid var(--off);
+    }
+
+    .timeline-year {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 4px;
+    }
+
+    .timeline-degree {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 4px;
+    }
+
+    .timeline-school {
+      font-size: 0.88rem;
+      color: var(--gray);
+      margin-bottom: 6px;
+    }
+
+    .timeline-desc {
+      font-size: 0.88rem;
+      line-height: 1.6;
+      color: var(--mid);
+    }
+
+    .edu-right-img {
+      width: 100%;
+      border-radius: 4px;
+      overflow: hidden;
+      background: var(--navy);
+    }
+
+    .edu-right-img img {
+      width: 100%;
+      height: 380px;
+      object-fit: cover;
+      display: block;
+      opacity: 0.85;
+    }
+
+    .edu-right-img .img-placeholder {
+      width: 100%;
+      height: 380px;
+      background: linear-gradient(135deg, #0d1b3e 0%, #1a3a7a 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* ── 03 PORTFOLIO ────────────────────────────────────────────── */
+    #portfolio {
+      background: var(--white);
+    }
+
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      margin-top: 56px;
+    }
+
+    .portfolio-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 4px;
+      background: var(--navy);
+      cursor: pointer;
+    }
+
+    .portfolio-card:first-child {
+      grid-column: 1 / -1;
+    }
+
+    .portfolio-card img {
+      width: 100%;
+      height: 420px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease, opacity 0.3s;
+      opacity: 0.75;
+    }
+
+    .portfolio-card:first-child img { height: 520px; }
+
+    .portfolio-card:hover img {
+      transform: scale(1.04);
+      opacity: 0.6;
+    }
+
+    .portfolio-card-info {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 32px;
+      background: linear-gradient(transparent, rgba(13,27,62,0.9));
+    }
+
+    .portfolio-card-tag {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 6px;
+    }
+
+    .portfolio-card-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--white);
+    }
+
+    .portfolio-card-desc {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.7);
+      margin-top: 4px;
+    }
+
+    /* ── 04 SKILLS ───────────────────────────────────────────────── */
+    #skills {
+      background: var(--navy);
+      padding: 120px 80px;
+    }
+
+    #skills .section-num { color: rgba(255,255,255,0.3); }
+
+    .skills-intro {
+      font-size: 1.02rem;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.6);
+      max-width: 520px;
+      margin-bottom: 64px;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+    }
+
+    .skill-card {
+      padding: 32px;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 4px;
+      transition: border-color 0.25s;
+    }
+
+    .skill-card:hover { border-color: var(--orange); }
+
+    .skill-card-icon {
+      font-size: 1.6rem;
+      margin-bottom: 16px;
+    }
+
+    .skill-card-title {
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 12px;
+    }
+
+    .skill-card-list {
+      list-style: none;
+    }
+
+    .skill-card-list li {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.55);
+      padding: 5px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .skill-card-list li:last-child { border-bottom: none; }
+
+    /* ── CONTACT ─────────────────────────────────────────────────── */
+    #contact {
+      background: var(--off);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .contact-intro {
+      font-size: 1rem;
+      line-height: 1.7;
+      color: var(--mid);
+      margin-bottom: 40px;
+    }
+
+    .contact-detail {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+
+    .contact-detail-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--navy);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .contact-detail-icon svg {
+      width: 16px;
+      height: 16px;
+      color: var(--white);
+    }
+
+    .contact-detail-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-bottom: 2px;
+    }
+
+    .contact-detail-value {
+      font-size: 0.95rem;
+      color: var(--navy);
+      font-weight: 500;
+    }
+
+    /* Form */
+    form { display: flex; flex-direction: column; gap: 16px; }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+    input, textarea, select {
+      width: 100%;
+      padding: 14px 16px;
+      border: 1.5px solid rgba(0,0,0,0.12);
+      border-radius: 3px;
+      font-family: var(--font);
+      font-size: 0.92rem;
+      color: var(--navy);
+      background: var(--white);
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    input:focus, textarea:focus { border-color: var(--navy); }
+
+    textarea { resize: vertical; min-height: 130px; }
+
+    .form-submit {
+      display: inline-block;
+      padding: 15px 36px;
+      background: var(--navy);
+      color: var(--white);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border: none;
+      border-radius: 2px;
+      cursor: pointer;
+      transition: background 0.2s;
+      align-self: flex-start;
+    }
+
+    .form-submit:hover { background: var(--orange); }
+
+    /* ── FOOTER ──────────────────────────────────────────────────── */
+    footer {
+      background: var(--navy);
+      color: rgba(255,255,255,0.45);
+      padding: 36px 80px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.78rem;
+      letter-spacing: 0.06em;
+    }
+
+    footer .footer-logo {
+      font-weight: 800;
+      font-size: 0.88rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--white);
+    }
+
+    footer a {
+      color: rgba(255,255,255,0.45);
+      transition: color 0.2s;
+    }
+
+    footer a:hover { color: var(--white); }
+
+    /* ── RESPONSIVE ──────────────────────────────────────────────── */
+    @media (max-width: 900px) {
+      nav { padding: 0 28px; }
+
+      #hero { grid-template-columns: 1fr; }
+      .hero-left { padding: 60px 28px; }
+      .hero-right { display: none; }
+
+      section { padding: 80px 28px; }
+      .two-col, .contact-grid { grid-template-columns: 1fr; gap: 48px; }
+      .skills-grid { grid-template-columns: 1fr 1fr; }
+      .portfolio-grid { grid-template-columns: 1fr; }
+      .portfolio-card:first-child { grid-column: auto; }
+      .divider { margin: 0 28px; }
+      #skills { padding: 80px 28px; }
+      footer { padding: 28px; flex-direction: column; gap: 12px; text-align: center; }
+      .stat-grid { grid-template-columns: 1fr 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 580px) {
+      .skills-grid { grid-template-columns: 1fr; }
+      .nav-links { gap: 16px; }
+      .hero-name { font-size: 3rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ───────────────────────────────────────────────────────── -->
+<nav>
+  <span class="nav-logo">KM</span>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#portfolio">Portfolio</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- ── HERO ──────────────────────────────────────────────────────── -->
+<section id="hero">
+  <div class="hero-left">
+    <p class="hero-tag">Exercise Science &amp; Physiotherapy</p>
+    <h1 class="hero-name">Kyle<br>Marambio</h1>
+    <p class="hero-sub">
+      Exercise &amp; Sport Science Student · Aspiring Physiotherapist · Athlete.<br>
+      Bridging science and performance to help people move and feel better.
+    </p>
+    <div class="hero-ctas">
+      <a href="#portfolio" class="btn-primary">View Portfolio</a>
+      <a href="#contact" class="btn-outline">Get in Touch</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <!--
+      REPLACE THIS PLACEHOLDER with your photo:
+      <img src="your-photo.jpg" alt="Kyle Marambio" />
+    -->
+    <div class="hero-photo-placeholder">
+      <svg viewBox="0 0 100 100" fill="white" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="50" cy="35" r="20"/>
+        <path d="M15 90c0-19.33 15.67-35 35-35s35 15.67 35 35" fill="white"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ── TICKER ─────────────────────────────────────────────────────── -->
+<div class="ticker-wrap" aria-hidden="true">
+  <div class="ticker-track">
+    <span>Exercise Science</span><span class="dot">●</span>
+    <span>Physiotherapy</span><span class="dot">●</span>
+    <span>Sports Performance</span><span class="dot">●</span>
+    <span>Health &amp; Wellness</span><span class="dot">●</span>
+    <span>Biomechanics</span><span class="dot">●</span>
+    <span>Strength &amp; Conditioning</span><span class="dot">●</span>
+    <span>Clinical Assessment</span><span class="dot">●</span>
+    <span>Rehabilitation</span><span class="dot">●</span>
+    <span>Nutrition Science</span><span class="dot">●</span>
+    <span>Exercise Science</span><span class="dot">●</span>
+    <span>Physiotherapy</span><span class="dot">●</span>
+    <span>Sports Performance</span><span class="dot">●</span>
+    <span>Health &amp; Wellness</span><span class="dot">●</span>
+    <span>Biomechanics</span><span class="dot">●</span>
+    <span>Strength &amp; Conditioning</span><span class="dot">●</span>
+    <span>Clinical Assessment</span><span class="dot">●</span>
+    <span>Rehabilitation</span><span class="dot">●</span>
+    <span>Nutrition Science</span><span class="dot">●</span>
+  </div>
+</div>
+
+<!-- ── 01 ABOUT ───────────────────────────────────────────────────── -->
+<section id="about">
+  <div class="two-col">
+    <div class="about-body">
+      <p class="section-num">01</p>
+      <h2 class="section-heading">About Me</h2>
+      <p>
+        My name is Kyle Marambio, and I am currently completing a Bachelor of Exercise and Sport Science
+        at Swinburne University of Technology, having previously completed a Diploma of Health Science.
+      </p>
+      <p>
+        I am passionate about understanding how the human body moves, adapts, and recovers — and applying
+        that knowledge to help individuals perform at their best. My goal is to pursue a career in
+        physiotherapy, combining clinical expertise with a genuine love for sport and movement.
+      </p>
+      <p>
+        Outside of study, I'm an athlete who practices what I study — training regularly and staying active
+        in the sports science community.
+      </p>
+      <div class="contact-chips">
+        <div class="chip">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+          <span>kmara009@gmail.com</span>
+        </div>
+        <div class="chip">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+          <span>0415 007 528</span>
+        </div>
+        <div class="chip">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+          <span>Melbourne, Australia</span>
+        </div>
+      </div>
+    </div>
+    <div class="about-right">
+      <div class="stat-grid">
+        <div class="stat-item">
+          <div class="stat-num">2+</div>
+          <div class="stat-label">Years Studying</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">2</div>
+          <div class="stat-label">Qualifications</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">100%</div>
+          <div class="stat-label">Committed</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">∞</div>
+          <div class="stat-label">Drive</div>
+        </div>
+      </div>
+      <a href="https://linkedin.com" target="_blank" class="linkedin-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM.5 8.5h4V24h-4V8.5zm7.5 0h3.83v2.12h.05c.53-1 1.83-2.12 3.77-2.12 4.03 0 4.77 2.65 4.77 6.1V24h-4v-8.62c0-2.06-.04-4.7-2.87-4.7-2.87 0-3.31 2.24-3.31 4.55V24H8V8.5z"/></svg>
+        LinkedIn Profile
+      </a>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── 02 EDUCATION ───────────────────────────────────────────────── -->
+<section id="education">
+  <div class="two-col">
+    <div>
+      <p class="section-num">02</p>
+      <h2 class="section-heading edu-heading">Education</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <p class="timeline-year">2024 – Present</p>
+          <p class="timeline-degree">Bachelor of Exercise and Sport Science</p>
+          <p class="timeline-school">Swinburne University of Technology</p>
+          <p class="timeline-desc">Physiology and performance focus. Covering biomechanics, exercise physiology, anatomy, and sports psychology.</p>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <p class="timeline-year">2023</p>
+          <p class="timeline-degree">Diploma of Health Science</p>
+          <p class="timeline-school">Completed prior to undergraduate degree</p>
+          <p class="timeline-desc">Foundation in health science principles, anatomy, and clinical frameworks.</p>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot" style="background:#ccc;"></div>
+          <p class="timeline-year" style="color:#aaa;">Future Goal</p>
+          <p class="timeline-degree">Master of Physiotherapy</p>
+          <p class="timeline-school">Aspiring to enrol post-undergraduate</p>
+          <p class="timeline-desc">Aiming to specialise in musculoskeletal and sports physiotherapy.</p>
+        </div>
+      </div>
+    </div>
+    <div class="edu-right-img">
+      <!--
+        REPLACE with a relevant image:
+        <img src="education-image.jpg" alt="Study" />
+      -->
+      <div class="img-placeholder">
+        <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="1.5" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 14l9-5-9-5-9 5 9 5z"/>
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── 03 PORTFOLIO ───────────────────────────────────────────────── -->
+<section id="portfolio">
+  <p class="section-num">03</p>
+  <h2 class="section-heading">Portfolio</h2>
+  <p style="color:var(--gray);font-size:1rem;max-width:560px;line-height:1.65;margin-top:8px;">
+    A collection of projects, case studies, and practical work from my studies and beyond.
+  </p>
+
+  <div class="portfolio-grid">
+    <!-- Main featured card -->
+    <div class="portfolio-card">
+      <!--
+        REPLACE with your own image:
+        <img src="portfolio-main.jpg" alt="Exercise Science Project" />
+      -->
+      <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1200&q=80" alt="Gym / Exercise Science" />
+      <div class="portfolio-card-info">
+        <p class="portfolio-card-tag">Exercise Science · Research</p>
+        <p class="portfolio-card-title">Sports Performance Analysis</p>
+        <p class="portfolio-card-desc">Applied exercise physiology principles to analyse athletic performance metrics.</p>
+      </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="portfolio-card">
+      <img src="https://images.unsplash.com/photo-1576678927484-cc907957088c?w=800&q=80" alt="Physiotherapy" />
+      <div class="portfolio-card-info">
+        <p class="portfolio-card-tag">Rehabilitation</p>
+        <p class="portfolio-card-title">Injury Prevention Program</p>
+        <p class="portfolio-card-desc">Designed a structured warm-up and conditioning protocol for injury reduction.</p>
+      </div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="portfolio-card">
+      <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&q=80" alt="Health Science" />
+      <div class="portfolio-card-info">
+        <p class="portfolio-card-tag">Health Science</p>
+        <p class="portfolio-card-title">Health &amp; Wellness Assessment</p>
+        <p class="portfolio-card-desc">Comprehensive health screening and lifestyle assessment report.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 04 SKILLS ──────────────────────────────────────────────────── -->
+<section id="skills">
+  <p class="section-num">04</p>
+  <h2 class="section-heading white">Key Attributes &amp;<br>Professional Skills</h2>
+  <p class="skills-intro">
+    A blend of scientific knowledge, clinical understanding, and personal athletic experience
+    that drives my approach to health and performance.
+  </p>
+
+  <div class="skills-grid">
+    <div class="skill-card">
+      <div class="skill-card-icon">🔬</div>
+      <p class="skill-card-title">Exercise Science</p>
+      <ul class="skill-card-list">
+        <li>Exercise Physiology</li>
+        <li>Biomechanics</li>
+        <li>Anatomy &amp; Physiology</li>
+        <li>Strength &amp; Conditioning</li>
+        <li>Motor Learning</li>
+      </ul>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-icon">🏥</div>
+      <p class="skill-card-title">Clinical Knowledge</p>
+      <ul class="skill-card-list">
+        <li>Clinical Assessment</li>
+        <li>Injury Rehabilitation</li>
+        <li>Health Science Fundamentals</li>
+        <li>Patient-Centred Care</li>
+        <li>Evidence-Based Practice</li>
+      </ul>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-icon">🏃</div>
+      <p class="skill-card-title">Sport &amp; Performance</p>
+      <ul class="skill-card-list">
+        <li>Athletic Performance</li>
+        <li>Sports Psychology</li>
+        <li>Program Design</li>
+        <li>Nutrition Principles</li>
+        <li>Recovery Strategies</li>
+      </ul>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-icon">📊</div>
+      <p class="skill-card-title">Research &amp; Analysis</p>
+      <ul class="skill-card-list">
+        <li>Data Analysis</li>
+        <li>Literature Review</li>
+        <li>Scientific Writing</li>
+        <li>Critical Thinking</li>
+      </ul>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-icon">🤝</div>
+      <p class="skill-card-title">Interpersonal</p>
+      <ul class="skill-card-list">
+        <li>Communication</li>
+        <li>Team Collaboration</li>
+        <li>Client Motivation</li>
+        <li>Active Listening</li>
+      </ul>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-icon">💻</div>
+      <p class="skill-card-title">Technical &amp; Tools</p>
+      <ul class="skill-card-list">
+        <li>Microsoft Office Suite</li>
+        <li>Health Assessment Software</li>
+        <li>Statistical Analysis</li>
+        <li>Report Writing</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ── CONTACT ────────────────────────────────────────────────────── -->
+<section id="contact">
+  <div class="contact-grid">
+    <div>
+      <p class="section-num">05</p>
+      <h2 class="section-heading">Get in Touch</h2>
+      <p class="contact-intro">
+        Have a question or want to discuss a potential collaboration? Send me a message and
+        I'll get back to you as soon as possible.
+      </p>
+
+      <div class="contact-detail">
+        <div class="contact-detail-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+        </div>
+        <div>
+          <p class="contact-detail-label">Email</p>
+          <p class="contact-detail-value">kmara009@gmail.com</p>
+        </div>
+      </div>
+
+      <div class="contact-detail">
+        <div class="contact-detail-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+        </div>
+        <div>
+          <p class="contact-detail-label">Phone</p>
+          <p class="contact-detail-value">0415 007 528</p>
+        </div>
+      </div>
+
+      <div class="contact-detail">
+        <div class="contact-detail-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+        </div>
+        <div>
+          <p class="contact-detail-label">Location</p>
+          <p class="contact-detail-value">Melbourne, Australia</p>
+        </div>
+      </div>
+    </div>
+
+    <form
+      action="https://formspree.io/f/your-form-id"
+      method="POST"
+    >
+      <!-- NOTE: Sign up at formspree.io (free) and replace "your-form-id" above -->
+      <div class="form-row">
+        <input type="text" name="name" placeholder="Full Name" required />
+        <input type="email" name="email" placeholder="Email Address" required />
+      </div>
+      <input type="text" name="subject" placeholder="Subject" />
+      <textarea name="message" placeholder="Your Message" required></textarea>
+      <button type="submit" class="form-submit">Send Message</button>
+    </form>
+  </div>
+</section>
+
+<!-- ── FOOTER ─────────────────────────────────────────────────────── -->
+<footer>
+  <span class="footer-logo">Kyle Marambio</span>
+  <span>© 2026 Kyle Marambio · Exercise &amp; Sport Science</span>
+  <div style="display:flex;gap:20px;">
+    <a href="mailto:kmara009@gmail.com">Email</a>
+    <a href="https://linkedin.com" target="_blank">LinkedIn</a>
+  </div>
+</footer>
+
+</body>
+</html>
