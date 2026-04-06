@@ -433,14 +433,10 @@
       justify-content: center;
     }
 
-    /* ── 03 PORTFOLIO ────────────────────────────────────────────── */
-    #portfolio {
-      background: var(--white);
-    }
-
+    /* ── EVIDENCE ───────────────────────────────────────────────── */
     .portfolio-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       gap: 24px;
       margin-top: 56px;
     }
@@ -453,10 +449,6 @@
       cursor: pointer;
     }
 
-    .portfolio-card:first-child {
-      grid-column: 1 / -1;
-    }
-
     .portfolio-card img {
       width: 100%;
       height: 420px;
@@ -466,7 +458,58 @@
       opacity: 0.75;
     }
 
-    .portfolio-card:first-child img { height: 520px; }
+    details.portfolio-card {
+      cursor: pointer;
+    }
+
+    details.portfolio-card summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 24px 28px;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      color: var(--white);
+      background: rgba(255,255,255,0.08);
+      outline: none;
+    }
+
+    details.portfolio-card summary::-webkit-details-marker {
+      display: none;
+    }
+
+    details.portfolio-card[open] summary {
+      background: rgba(255,255,255,0.12);
+    }
+
+    details.portfolio-card .portfolio-card-info {
+      padding: 20px 28px 28px;
+      background: rgba(0, 0, 0, 0.15);
+    }
+
+    details.portfolio-card .portfolio-card-desc {
+      color: rgba(255,255,255,0.8);
+      margin-top: 0;
+    }
+
+    .exercise-gallery {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      padding: 16px 28px 0;
+    }
+
+    .exercise-gallery img {
+      width: 100%;
+      height: 130px;
+      object-fit: cover;
+      border-radius: 4px;
+      transition: transform 0.3s ease;
+    }
+
+    .exercise-gallery img:hover {
+      transform: scale(1.03);
+    }
 
     .portfolio-card:hover img {
       transform: scale(1.04);
@@ -719,7 +762,7 @@
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#education">Education</a></li>
-    <li><a href="#portfolio">Portfolio</a></li>
+    <li><a href="#evidence">Evidence</a></li>
     <li><a href="#skills">Skills</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
@@ -735,8 +778,8 @@
       Bridging science and performance to help people move and feel better.
     </p>
     <div class="hero-ctas">
-      <a href="#portfolio" class="btn-primary">View Portfolio</a>
-      <a href="#contact" class="btn-outline">Get in Touch</a>
+      <a href="#evidence" class="btn-primary">View Evidence</a>
+      <a href="#contact" class="btn-outline">Get in Touch With Me</a>
     </div>
   </div>
   <div class="hero-right">
@@ -795,6 +838,10 @@
       <p>
         Outside of study, I'm an athlete who practices what I study — training regularly and staying active
         in the sports science community.
+      </p>
+      <p>
+        I am currently completing placement at Methodist Ladies College, supervising and working alongside
+        strength and conditioning coaches to help deliver exercise sessions and programs for elite adolescent athletes.
       </p>
       <div class="contact-chips">
         <div class="chip">
@@ -887,48 +934,42 @@
 
 <div class="divider"></div>
 
-<!-- ── 03 PORTFOLIO ───────────────────────────────────────────────── -->
-<section id="portfolio">
+<!-- ── 03 EVIDENCE ───────────────────────────────────────────────── -->
+<section id="evidence">
   <p class="section-num">03</p>
-  <h2 class="section-heading">Portfolio</h2>
+  <h2 class="section-heading">Evidence</h2>
   <p style="color:var(--gray);font-size:1rem;max-width:560px;line-height:1.65;margin-top:8px;">
-    A collection of projects, case studies, and practical work from my studies and beyond.
+    Click each item to review qualifications, certificates, and real-world exercise science practice.
   </p>
 
   <div class="portfolio-grid">
-    <!-- Main featured card -->
-    <div class="portfolio-card">
-      <!--
-        REPLACE with your own image:
-        <img src="portfolio-main.jpg" alt="Exercise Science Project" />
-      -->
-      <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1200&q=80" alt="Gym / Exercise Science" />
+    <details class="portfolio-card">
+      <summary class="portfolio-card-title">Diploma of Health Science</summary>
+      <img src="images/diploma.svg" alt="Diploma certificate" />
       <div class="portfolio-card-info">
-        <p class="portfolio-card-tag">Exercise Science · Research</p>
-        <p class="portfolio-card-title">Sports Performance Analysis</p>
-        <p class="portfolio-card-desc">Applied exercise physiology principles to analyse athletic performance metrics.</p>
+        <p class="portfolio-card-desc">Completed a Diploma of Health Science covering anatomy, physiology, and clinical health principles.</p>
       </div>
-    </div>
+    </details>
 
-    <!-- Card 2 -->
-    <div class="portfolio-card">
-      <img src="https://images.unsplash.com/photo-1576678927484-cc907957088c?w=800&q=80" alt="Physiotherapy" />
+    <details class="portfolio-card">
+      <summary class="portfolio-card-title">First Aid &amp; CPR Certificate</summary>
+      <img src="images/first-aid.svg" alt="First aid training" />
       <div class="portfolio-card-info">
-        <p class="portfolio-card-tag">Rehabilitation</p>
-        <p class="portfolio-card-title">Injury Prevention Program</p>
-        <p class="portfolio-card-desc">Designed a structured warm-up and conditioning protocol for injury reduction.</p>
+        <p class="portfolio-card-desc">Certified in First Aid and CPR with practical experience in emergency response and safety protocols.</p>
       </div>
-    </div>
+    </details>
 
-    <!-- Card 3 -->
-    <div class="portfolio-card">
-      <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&q=80" alt="Health Science" />
-      <div class="portfolio-card-info">
-        <p class="portfolio-card-tag">Health Science</p>
-        <p class="portfolio-card-title">Health &amp; Wellness Assessment</p>
-        <p class="portfolio-card-desc">Comprehensive health screening and lifestyle assessment report.</p>
+    <details class="portfolio-card">
+      <summary class="portfolio-card-title">Exercise &amp; Sport Science Skills</summary>
+      <div class="exercise-gallery">
+        <img src="images/skill-1.svg" alt="Exercise skills photo 1" />
+        <img src="images/skill-2.svg" alt="Exercise skills photo 2" />
+        <img src="images/skill-3.svg" alt="Exercise skills photo 3" />
       </div>
-    </div>
+      <div class="portfolio-card-info">
+        <p class="portfolio-card-desc">A gallery showing exercise and sport science skills during placement at Methodist Ladies College.</p>
+      </div>
+    </details>
   </div>
 </section>
 
@@ -1013,10 +1054,10 @@
   <div class="contact-grid">
     <div>
       <p class="section-num">05</p>
-      <h2 class="section-heading">Get in Touch</h2>
+      <h2 class="section-heading">Get in Touch With Me</h2>
       <p class="contact-intro">
-        Have a question or want to discuss a potential collaboration? Send me a message and
-        I'll get back to you as soon as possible.
+        Have a question or want to discuss a project, study pathway, or physiotherapy goal?
+        Send me a message and I'll reply as soon as I can.
       </p>
 
       <div class="contact-detail">
