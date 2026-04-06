@@ -106,6 +106,31 @@
       margin-bottom: 24px;
     }
 
+    .hero-title-row {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .hero-headshot {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      overflow: hidden;
+      flex-shrink: 0;
+      border: 3px solid rgba(255,255,255,0.12);
+      box-shadow: 0 18px 40px rgba(0,0,0,0.18);
+    }
+
+    .hero-headshot img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
     .hero-sub {
       font-size: 1.05rem;
       font-weight: 400;
@@ -772,7 +797,12 @@
 <section id="hero">
   <div class="hero-left">
     <p class="hero-tag">Exercise Science &amp; Physiotherapy</p>
-    <h1 class="hero-name">Kyle<br>Marambio</h1>
+    <div class="hero-title-row">
+      <h1 class="hero-name">Kyle<br>Marambio</h1>
+      <div class="hero-headshot">
+        <img src="images/headshot.jpg" alt="Kyle Marambio" />
+      </div>
+    </div>
     <p class="hero-sub">
       Exercise &amp; Sport Science Student · Aspiring Physiotherapist · Athlete.<br>
       Bridging science and performance to help people move and feel better.
@@ -968,7 +998,7 @@
         <img src="images/skill-4.jpg" alt="Exercise skills photo 4" />
       </div>
       <div class="portfolio-card-info">
-        <p class="portfolio-card-desc">A gallery showing exercise and sport science skills during placement at Methodist Ladies College.</p>
+        <p class="portfolio-card-desc">A gallery showing exercise and sport science skills from practical training and hands-on assessments.</p>
       </div>
     </details>
   </div>
