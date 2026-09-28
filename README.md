@@ -1073,7 +1073,7 @@
   <span>© 2026 Kyle Marambio · Exercise &amp; Sport Science</span>
   <div style="display:flex;gap:20px;">
     <a href="mailto:kmara009@gmail.com">Email</a>
-    <a href="https://linkedin.com" target="_blank">LinkedIn</a>
+    <a href="https://www.linkedin.com/in/kyle-marambio-2742962b9" target="_blank">LinkedIn</a>
   </div>
 </footer>
 
